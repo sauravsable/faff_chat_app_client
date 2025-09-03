@@ -1,0 +1,37 @@
+.headingdiv {
+  padding: 10px;
+}
+
+.userDetaildiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(51, 51, 51);
+  color: white;
+  margin: 10px 0;
+  height: 70px;
+  padding: 10px;
+}
+
+.userDetailImage {
+  width: 3.5vmax;
+  height: 3.5vmax;
+  border-radius: 100%;
+  margin: 1vmax;
+}
+
+
+.selectBtn{
+  border: none;
+  background-color: tomato;
+  color: white;
+  font: 300 0.9vmax "Roboto";
+  width: 30%;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
+}
