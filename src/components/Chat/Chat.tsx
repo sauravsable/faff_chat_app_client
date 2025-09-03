@@ -35,7 +35,7 @@ interface ChatInputProps {
 }
 
 // ---------- Socket ----------
-const socket: Socket = io("http://localhost:5000", {
+const socket: Socket = io(import.meta.env.VITE_API_URL_SOCKET, {
   withCredentials: true,
 });
 
