@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient  } from "@tanstack/react-query";
 import { semanticSearch } from "../../utils/api";
 import "./Search.css";
 
 export default function Search() {
   const [query, setQuery] = useState("");
   const [searchText, setSearchText] = useState("");
+  const queryClient = useQueryClient();
 
-  const { data, isLoading, isError, refetch, remove } = useQuery({
+  const { data, isLoading, isError, refetch  } = useQuery({
     queryKey: ["semantic-search", searchText],
     queryFn: () => semanticSearch(searchText),
     enabled: false,
@@ -19,10 +20,10 @@ export default function Search() {
     refetch();
   };
 
-  const handleClear = () => {
+   const handleClear = () => {
     setQuery("");
     setSearchText("");
-    remove(); // clears the query result from react-query cache
+    queryClient.removeQueries({ queryKey: ["semantic-search"] }); // clears cached results
   };
 
   return (
