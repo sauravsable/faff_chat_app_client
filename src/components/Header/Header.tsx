@@ -16,6 +16,7 @@ const Header = () => {
   const logoutMutation = useMutation({
     mutationFn: logoutApi,
     onSuccess: () => {
+       localStorage.removeItem("token");
       queryClient.invalidateQueries({ queryKey: ["user"] });
        navigate("/"); 
     },
