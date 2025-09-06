@@ -3,6 +3,7 @@ import Chat from "../../components/Chat/Chat";
 import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import "./User.css";
+import Search from "../../components/Search/Search";
 
 interface User {
   _id: string;
@@ -20,15 +21,17 @@ const User: React.FC = () => {
         <div className="sidebar">
           <Sidebar onSelectUser={setSelectedUser} />
         </div>
-
-        <div className="chat-box">
-          {selectedUser ? (
-            <Chat receiver={selectedUser} />
-          ) : (
-            <div className="no-chat-selected">
-              <p>Select a user to start chatting</p>
-            </div>
-          )}
+        <div className="box">
+          <Search />
+          <div className="chat-box">
+            {selectedUser ? (
+              <Chat receiver={selectedUser} />
+            ) : (
+              <div className="no-chat-selected">
+                <p>Select a user to start chatting</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

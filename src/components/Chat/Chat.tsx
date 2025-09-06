@@ -5,7 +5,6 @@ import "./Chat.css";
 import { userAuthApi } from "../../utils/api";
 import profileImage from "../../assets/Profile.png";
 
-// ---------- Types ----------
 interface User {
   _id: string;
   name: string;
@@ -20,7 +19,7 @@ interface Message {
 }
 
 interface ChatProps {
-  receiver: User; // selected user details
+  receiver: User;
 }
 
 interface MessageItemProps {
@@ -34,12 +33,11 @@ interface ChatInputProps {
   sendMessage: () => void;
 }
 
-// ---------- Socket ----------
 const socket: Socket = io(import.meta.env.VITE_API_URL_SOCKET, {
   withCredentials: true,
 });
 
-// ---------- Components ----------
+
 const MessageItem: React.FC<MessageItemProps> = ({ msg, isCurrentUser }) => (
   <div className={`message ${isCurrentUser ? "my-message" : "user-message"}`}>
     <img
@@ -67,7 +65,6 @@ const ChatInput: React.FC<ChatInputProps> = ({ message, setMessage, sendMessage 
   </div>
 );
 
-// ---------- Main Chat ----------
 const Chat: React.FC<ChatProps> = ({ receiver }) => {
   const [chat, setChat] = useState<Message[]>([]);
   const [message, setMessage] = useState("");
@@ -88,9 +85,6 @@ const Chat: React.FC<ChatProps> = ({ receiver }) => {
       senderId: user._id,
       receiverId: receiver._id,
     });
-
-    console.log("message", message);
-    
 
     const handlePreviousMessages = (messages: Message[]) => setChat(messages);
     const handleMessage = (data: Message) => setChat((prev) => [...prev, data]);
@@ -124,7 +118,6 @@ const Chat: React.FC<ChatProps> = ({ receiver }) => {
 
   return (
     <div className="chat-container">
-      {/* --- Selected User Header --- */}
       <div className="chat-header">
         <img
           src={profileImage}
@@ -136,7 +129,6 @@ const Chat: React.FC<ChatProps> = ({ receiver }) => {
         </div>
       </div>
 
-      {/* --- Chat Window --- */}
       <div className="chat-window">
         {chat.map((msg, index) => (
           <MessageItem
@@ -148,7 +140,6 @@ const Chat: React.FC<ChatProps> = ({ receiver }) => {
         <div ref={chatEndRef}></div>
       </div>
 
-      {/* --- Input --- */}
       <ChatInput
         message={message}
         setMessage={setMessage}

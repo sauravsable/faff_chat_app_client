@@ -58,7 +58,10 @@ export default function LoginSignup() {
 
   const loginMutation = useMutation({
     mutationFn: loginApi,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      if (data?.token) {
+        localStorage.setItem("token", data.token);
+      }
       queryClient.invalidateQueries({ queryKey: ["user"] });
       alert("Login successful");
       navigate("/user");
@@ -70,7 +73,10 @@ export default function LoginSignup() {
 
   const registerMutation = useMutation({
     mutationFn: registerApi,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      if (data?.token) {
+        localStorage.setItem("token", data.token);
+      }
       queryClient.invalidateQueries({ queryKey: ["user"] });
       alert("Registration successful");
       navigate("/user");
@@ -130,7 +136,6 @@ export default function LoginSignup() {
           <button ref={switcherTab}></button>
         </div>
 
-        {/* Login Form */}
         <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
           <InputField
             icon={MdOutlineMailOutline}
@@ -155,7 +160,6 @@ export default function LoginSignup() {
           </button>
         </form>
 
-        {/* Register Form */}
         <form
           className="signUpForm"
           ref={registerTab}
