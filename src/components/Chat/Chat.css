@@ -8,12 +8,20 @@
   overflow: hidden;
 }
 
+.chatdiv{
+  height: 50vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
 .chat-window {
   flex: 1;
   overflow-y: auto;
   padding: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 10px;
 }
 

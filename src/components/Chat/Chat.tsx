@@ -37,14 +37,9 @@ const socket: Socket = io(import.meta.env.VITE_API_URL_SOCKET, {
   withCredentials: true,
 });
 
-
 const MessageItem: React.FC<MessageItemProps> = ({ msg, isCurrentUser }) => (
   <div className={`message ${isCurrentUser ? "my-message" : "user-message"}`}>
-    <img
-      src={profileImage}
-      alt="User Avatar"
-      className="avatar"
-    />
+    <img src={profileImage} alt="User Avatar" className="avatar" />
     <div className="message-content">
       <span className="message-name">{msg.senderId?.name || "Unknown"}</span>
       <span className="message-text">{msg.text}</span>
@@ -52,7 +47,11 @@ const MessageItem: React.FC<MessageItemProps> = ({ msg, isCurrentUser }) => (
   </div>
 );
 
-const ChatInput: React.FC<ChatInputProps> = ({ message, setMessage, sendMessage }) => (
+const ChatInput: React.FC<ChatInputProps> = ({
+  message,
+  setMessage,
+  sendMessage,
+}) => (
   <div className="chat-input">
     <input
       type="text"
@@ -119,25 +118,23 @@ const Chat: React.FC<ChatProps> = ({ receiver }) => {
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <img
-          src={profileImage}
-          alt={receiver?.name}
-          className="avatar"
-        />
+        <img src={profileImage} alt={receiver?.name} className="avatar" />
         <div className="chat-user-info">
           <h4>{receiver?.name}</h4>
         </div>
       </div>
 
-      <div className="chat-window">
-        {chat.map((msg, index) => (
-          <MessageItem
-            key={index}
-            msg={msg}
-            isCurrentUser={msg.senderId?._id === user?._id}
-          />
-        ))}
-        <div ref={chatEndRef}></div>
+      <div className="chatdiv">
+        <div className="chat-window">
+          {chat.map((msg, index) => (
+            <MessageItem
+              key={index}
+              msg={msg}
+              isCurrentUser={msg.senderId?._id === user?._id}
+            />
+          ))}
+          <div ref={chatEndRef}></div>
+        </div>
       </div>
 
       <ChatInput
