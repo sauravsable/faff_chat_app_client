@@ -8,13 +8,6 @@
   overflow: hidden;
 }
 
-.chatdiv{
-  height: 50vh;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
 .chat-window {
   flex: 1;
   overflow-y: auto;

@@ -124,7 +124,6 @@ const Chat: React.FC<ChatProps> = ({ receiver }) => {
         </div>
       </div>
 
-      <div className="chatdiv">
         <div className="chat-window">
           {chat.map((msg, index) => (
             <MessageItem
@@ -135,7 +134,6 @@ const Chat: React.FC<ChatProps> = ({ receiver }) => {
           ))}
           <div ref={chatEndRef}></div>
         </div>
-      </div>
 
       <ChatInput
         message={message}
